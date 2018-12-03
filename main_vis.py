@@ -3,30 +3,39 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-def norm(data):
-	return ( data - np.min(data) ) / ( np.max(data) - np.min(data) )
+def norm(data, dataTest):
+	dataTestValue = ( dataTest - np.min(data) ) / ( np.max(data) - np.min(data) )
+	return ( data - np.min(data) ) / ( np.max(data) - np.min(data) ) , np.clip( dataTestValue , 0, 1)
 
 fig = plt.figure()
 ax = fig.gca(projection='3d')
 
 n = 100
-datax = np.array([60,70,80,100,40, 90])
-datay = np.array([165,160,165,155,175, 155])
+x1 = np.array([60,70,80,100,40])
+x2 = np.array([165,160,165,155,175])
+
+beratBadan = float(input('Berat Badan : '))
+tinggiBadan = float(input('Tinggi Badan : '))
+
+x1, beratBadan = norm(x1, beratBadan)
+x2, tinggiBadan = norm(x2, tinggiBadan)
+
+x1 = np.append(x1, beratBadan)
+x2 = np.append(x2, tinggiBadan)
+
 # For each set of style and range settings, plot n random points in the box
 # defined by x in [23, 32], y in [0, 100], z in [zlow, zhigh].
 
-datax = norm(datax)
-datay = norm(datay)
 for c, m, index in [('r', 'o', 0), ('b', '^',1), ('g', 's',2)]:
     if index == 0 :
-        xs = datax[0:3]
-        ys = datay[0:3]
+        xs = x1[0:3]
+        ys = x2[0:3]
     elif index == 1 :
-        xs = datax[3:5]
-        ys = datay[3:5]
+        xs = x1[3:5]
+        ys = x2[3:5]
     else :
-        xs = datax[5:6]
-        ys = datay[5:6]
+        xs = x1[5:6]
+        ys = x2[5:6]
     zs = (xs * ys) ** 2
     ax.scatter(xs, ys, zs, c=c, marker=m)
 
