@@ -44,7 +44,7 @@ Y = np.arange(-0.1, 1.1, 0.1)
 X, Y = np.meshgrid(X, Y)
 R = np.sqrt(X**2 + Y**2)
 for i in range(len(R)) :
-  R[i].fill(0.01)
+    R[i].fill(0.01)
 Z = R
 ax.plot_surface(X, Y, Z,linewidth=0, antialiased=True, alpha=0.5)
 

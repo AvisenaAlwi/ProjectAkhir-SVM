@@ -169,7 +169,7 @@ w = get_w(alpha)
 b = get_b(w, phi(x1[1],x2[1]), phi(x1[3],x2[3]))
 fx = np.sum(w * phi( beratBadan , tinggiBadan )) + b
 
-print()
+print("Fx : ",fx)
 print("Termasuk : ", end="")
 if (fx < 0):
 	print('Tidak normal')
