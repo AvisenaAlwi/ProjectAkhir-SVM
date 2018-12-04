@@ -4,6 +4,17 @@ import pandas as pd
 sqrt = lambda x : x**(float(1/2))
 
 def norm(data, dataTest):
+	""" Normalisasi data
+	
+	Arguments:
+		data {array numpy 1 dimensi} -- data latih
+		dataTest {numpy array 1 dimensi} -- data uji
+	
+	Returns:
+		[numpy array 1 dimensi] -- return data yang sudah dinormalisasi
+		[numpy array 1 dimensi] -- return dataTest yang sudah dinormalisasi
+	"""
+
 	dataTestValue = ( dataTest - np.min(data) ) / ( np.max(data) - np.min(data) )
 	return ( data - np.min(data) ) / ( np.max(data) - np.min(data) ) , np.clip( dataTestValue , 0, 1)
 
@@ -169,7 +180,7 @@ w = get_w(alpha)
 b = get_b(w, phi(x1[1],x2[1]), phi(x1[3],x2[3]))
 fx = np.sum(w * phi( beratBadan , tinggiBadan )) + b
 
-print("Fx : ",fx)
+print("f(x) : ",fx)
 print("Termasuk : ", end="")
 if (fx < 0):
 	print('Tidak normal')
